@@ -1,8 +1,10 @@
+require("dotenv").config();
 const path = require("path");
 const mime = require("mime-types");
 const koa = require("koa");
 const send = require("koa-send");
 const route = require("koa-route");
+const static = require("koa-static");
 const logger = require("koa-logger");
 const { postgraphql } = require("postgraphql");
 
@@ -32,11 +34,16 @@ async function media(ctx, name) {
 app.use(route.get("/media/:name", media));
 
 app.use(
-  postgraphql("postgres:///recipes", "public", {
+  postgraphql(process.env.PG_CONNECTION, "api", {
     graphiql: true,
-    jwtSecret: "recipes",
-    jwtPgTypeIdentifier: "public.jwt_token"
+    defaultRole: "anonymous",
+    jwtRole: "role",
+    jwtSecret: process.env.JWT_SECRET,
+    jwtPgTypeIdentifier: "api.jwt_token",
+    watchPg: !(process.env.NODE_ENV === "production")
   })
 );
 
-app.listen(5000);
+app.use(static("client"));
+
+app.listen(process.env.PORT || 5000);

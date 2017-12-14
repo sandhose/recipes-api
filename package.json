@@ -5,10 +5,12 @@
   "author": "Quentin Gliech <quentin.gliech@etu.unitra.fr>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "koa": "^2.4.1",
     "koa-logger": "^3.1.0",
     "koa-route": "^3.2.0",
     "koa-send": "^4.1.1",
+    "koa-static": "^4.0.2",
     "mime-types": "^2.1.17",
     "postgraphql": "^3.5.4"
   }
