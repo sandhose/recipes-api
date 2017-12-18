@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-for file in $@; do
+for file in `find $1 -type f`; do
   echo $file
   HASH=`shasum $file | awk '{print $1}'`
   DIR="media/${HASH:0:1}/${HASH:1:1}"
