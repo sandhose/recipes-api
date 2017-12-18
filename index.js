@@ -40,6 +40,7 @@ app.use(
     jwtRole: "role",
     jwtSecret: process.env.JWT_SECRET,
     jwtPgTypeIdentifier: "api.jwt_token",
+    disableDefaultMutations: true,
     watchPg: !(process.env.NODE_ENV === "production")
   })
 );

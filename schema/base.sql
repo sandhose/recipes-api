@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS internal.ingredient_list_ingredient (
 
 CREATE TABLE IF NOT EXISTS api.profile (
 	id serial PRIMARY KEY,
-	username text,
-	email text,
+	username text UNIQUE,
+	email text UNIQUE,
 	password text,
 	full_name text,
 	biography text,
